@@ -53,15 +53,16 @@ ss-server \
 
 ### Quick Start (Windows via WSL)
 
-1. Install WSL2: `wsl --install -d Ubuntu`
-2. Inside WSL: `sudo apt install -y shadowsocks-libev`
-3. Run the same Linux commands above
-4. Forward the chosen port through Windows Firewall:
-   ```powershell
-   # Run in PowerShell as Administrator
-   netsh advfirewall firewall add rule name="Shadowsocks" dir=in action=allow protocol=TCP localport=YOUR_PORT
-   netsh advfirewall firewall add rule name="Shadowsocks UDP" dir=in action=allow protocol=UDP localport=YOUR_PORT
+> 📖 **New to this?** Follow the **[complete Windows step-by-step guide](WINDOWS_SETUP.md)** — covers everything from scratch.
+
+1. Install WSL2: `wsl --install -d Ubuntu` (in PowerShell as Admin, then reboot)
+2. Open Ubuntu terminal and navigate to the cloned project
+3. Run:
+   ```bash
+   bash vpn-setup/setup-vpn-windows.sh
    ```
+4. Copy-paste the PowerShell commands it prints (as Admin) to open the firewall
+5. Forward the port on your router
 
 ### Port Forwarding (All Platforms)
 
