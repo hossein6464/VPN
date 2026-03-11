@@ -1,0 +1,71 @@
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Kotlin ###
+.kotlin
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+### Android ###
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+output.json
+
+### Sensitive Data ###
+*.jks
+*.keystore
+*.p12
+*.key
+*.pem
+secrets.properties
+google-services.json
+key.properties
+
+### VPN Configs ###
+*.ovpn
+*.conf
+
+### Private / Sensitive Files ###
+README.private.md
+ANDROID_APP_SPEC.md
+vpn-setup/test-vpn.sh
+vpn-setup/test-native.sh
+
