@@ -1,23 +1,41 @@
 #!/bin/bash
-# Check VPN server status
+# Check VPN server status (native ss-server)
+
+CONFIG_DIR="$HOME/.shadowsocks-vpn"
+PID_FILE="$CONFIG_DIR/ss-server.pid"
+LOG_FILE="$CONFIG_DIR/ss-server.log"
+
 echo "=== VPN Server Status ==="
-if docker ps | grep -q shadowsocks-vpn; then
-    echo "✅ VPN server is RUNNING"
+
+if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
+    PID=$(cat "$PID_FILE")
+    echo "✅ VPN server is RUNNING (PID $PID)"
     echo ""
-    docker ps --filter name=shadowsocks-vpn --format "Container: {{.Names}}\nStatus: {{.Status}}\nPorts: {{.Ports}}"
+    # Show port from config
+    if [ -f "$CONFIG_DIR/server.conf" ]; then
+        source "$CONFIG_DIR/server.conf"
+        echo "Port: $VPN_PORT"
+    fi
+    # Show active connections
+    echo ""
+    echo "=== Active Connections ==="
+    if [ -f "$CONFIG_DIR/server.conf" ]; then
+        lsof -i ":$VPN_PORT" -n 2>/dev/null | grep ESTABLISHED || echo "No active client connections"
+    fi
     echo ""
     echo "=== Recent Logs ==="
-    docker logs shadowsocks-vpn --tail 10 2>&1
+    tail -10 "$LOG_FILE" 2>/dev/null || echo "No logs found"
 else
     echo "❌ VPN server is NOT running"
     echo ""
-    echo "Run: bash start-vpn.sh    (if previously set up)"
-    echo "Run: bash setup-vpn.sh    (for first-time setup)"
+    echo "Run: bash vpn-setup/start-vpn.sh    (if previously set up)"
+    echo "Run: bash vpn-setup/setup-vpn.sh    (for first-time setup)"
 fi
+
 echo ""
-echo "=== Your Connection Info ==="
-if [ -f "$HOME/.shadowsocks-vpn/connection-info.txt" ]; then
-    cat "$HOME/.shadowsocks-vpn/connection-info.txt"
+echo "=== Connection Info ==="
+if [ -f "$CONFIG_DIR/connection-info.txt" ]; then
+    cat "$CONFIG_DIR/connection-info.txt"
 else
     echo "No connection info found. Run setup-vpn.sh first."
 fi

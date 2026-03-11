@@ -161,9 +161,12 @@ tail -f ~/.shadowsocks-vpn/ss-server.log
 
 ```
 ├── vpn-setup/                 # Shell scripts for server management
-│   ├── setup-vpn.sh            # Main setup (native ss-server)
-│   ├── test-native.sh          # End-to-end connectivity test
-│   └── ...
+│   ├── setup-vpn.sh            # Setup for macOS / Linux
+│   ├── setup-vpn-windows.sh    # Setup for Windows (WSL2)
+│   ├── start-vpn.sh            # Start the server
+│   ├── stop-vpn.sh             # Stop the server
+│   ├── status-vpn.sh           # Check server status + connections
+│   └── test-native.sh          # End-to-end connectivity test
 ├── app/                        # Kotlin/JVM module (future Android client)
 ├── utils/                      # Shared Kotlin utilities module
 ├── buildSrc/                   # Gradle convention plugins
