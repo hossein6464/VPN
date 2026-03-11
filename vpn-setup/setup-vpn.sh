@@ -83,7 +83,7 @@ Port: $VPN_PORT
 Password: $SS_SECRET
 Encryption: chacha20-ietf-poly1305
 
-=== ACCESS KEY (for your brother) ===
+=== ACCESS KEY (share with client) ===
 $SS_LINK
 
 === LOCAL TEST KEY (same WiFi) ===
