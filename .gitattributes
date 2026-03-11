@@ -1,0 +1,11 @@
+# Force Unix line endings for shell scripts (critical for WSL)
+*.sh text eol=lf
+
+# Other text files: auto-detect
+*.kt text=auto
+*.kts text=auto
+*.md text=auto
+*.toml text=auto
+*.properties text=auto
+*.xml text=auto
+

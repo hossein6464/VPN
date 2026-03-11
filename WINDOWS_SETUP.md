@@ -100,7 +100,16 @@ You should see files like `README.md`, `vpn-setup/`, `app/`, etc.
 
 ---
 
-## Step 5: Run the Setup Script
+## Step 5: Fix Line Endings & Run the Setup Script
+
+Windows uses different "line endings" than Linux. You **must** fix this first, or the scripts will fail.
+
+```bash
+sudo apt install -y dos2unix
+dos2unix vpn-setup/*.sh
+```
+
+Now run the setup:
 
 ```bash
 bash vpn-setup/setup-vpn-windows.sh
@@ -269,6 +278,7 @@ bash vpn-setup/status-vpn.sh
 
 | Problem | What to do |
 |---------|-----------|
+| `$'\r': command not found` or `syntax error: unexpected end of file` | Line ending issue. Run: `sudo apt install -y dos2unix && dos2unix vpn-setup/*.sh` then try again |
 | `wsl --install` says "not recognized" | Your Windows 10 needs updating. Go to Settings → Update & Security → Windows Update → install all updates |
 | `ss-server: command not found` | Run `sudo apt install -y shadowsocks-libev` again |
 | Script says "This script is meant for WSL2" | You're running it from PowerShell. Open **Ubuntu** terminal instead |
